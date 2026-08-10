@@ -58,7 +58,7 @@ class SimpleEvolution(Algorithm):
             Maximal number of worker nodes for the Executor object that
             evaluates the fitness of the individuals.
 
-    rng: RNG
+    random_generator: RNG
             Random number generator
 
     random_seed: int, default=current system time
@@ -79,9 +79,6 @@ class SimpleEvolution(Algorithm):
 
     generation_num: int, default=0
             Current generation number
-
-    verbose: bool, default=True
-            For disabling logs
     """
 
     def __init__(
@@ -103,7 +100,6 @@ class SimpleEvolution(Algorithm):
         best_of_gen=None,
         worst_of_gen=None,
         generation_num=0,
-        verbose=True,
     ):
 
         if event_names is None:
@@ -112,8 +108,6 @@ class SimpleEvolution(Algorithm):
                 "after_eval",
                 "before_breeding",
                 "after_breeding",
-                "before_generation",
-                "after_generation",
             ]
         else:
             _event_names = event_names
